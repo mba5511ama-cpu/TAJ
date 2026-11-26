@@ -1,0 +1,164 @@
+/* ============================================================
+   TAJ RESTAURANT — style.css
+   1 Tokens · 2 Base · 3 Hero · 4 Tabs · 5 Menu · 6 Stepper
+   7 Visit/Footer · 8 Cart button · 9 Cart sheet · 10 A11y
+   ============================================================ */
+
+/* 1. TOKENS */
+:root{--red:#B30000;--red2:#D41F26;--yel:#FBB000;--cream:#FDF0E6;--ink:#2A0A0A;
+--bg:#FDF0E6;--fg:#2A0A0A;--card:#fff7f0;--line:rgba(42,10,10,.3);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c0707;--fg:#fdf0e6;--card:#2a0c0c;--line:rgba(253,240,230,.35);--red:#E02a2a}}
+:root[data-theme="dark"]{--bg:#1c0707;--fg:#fdf0e6;--card:#2a0c0c;--line:rgba(253,240,230,.35);--red:#E02a2a}
+
+/* 2. BASE */
+*{box-sizing:border-box;margin:0}
+html{overflow-x:hidden;scroll-behavior:smooth;scroll-padding-top:70px}
+body{direction:rtl;background:var(--bg);color:var(--fg);font:500 16px Cairo,Tahoma,sans-serif;overflow-x:hidden;max-width:100%}
+button{font-family:inherit}
+.btn{font:700 17px Cairo;border:0;border-radius:99px;padding:13px 26px;text-decoration:none;cursor:pointer;display:inline-block}
+.btn:hover{transform:scale(1.06)}
+.y{background:var(--yel);color:var(--ink)}
+.o{background:transparent;color:var(--cream);box-shadow:inset 0 0 0 2px var(--cream)}
+
+/* 3. HERO */
+.hero{position:relative;min-height:min(100svh,680px);background:var(--red);color:var(--cream);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px 20px 90px;overflow:hidden}
+.blob{position:absolute;width:260px;height:260px;background:var(--red2);border-radius:50% 40% 55% 45%;opacity:.75;animation:spin 28s linear infinite}
+.b1{top:-80px;left:-80px}.b2{bottom:40px;right:-110px;width:320px;height:320px;animation-direction:reverse}
+.logo{position:relative;z-index:1;direction:ltr;display:flex;align-items:flex-end;font:400 clamp(110px,34vw,260px)/.9 Lalezar;color:var(--cream)}
+.logo span{animation:rise .8s ease .1s both,wave 3s ease-in-out 1.6s infinite}
+.logo span:last-child{animation:rise .8s ease .6s both,wave 3s ease-in-out 2.1s infinite}
+.logo i{font-style:normal;display:inline-block;animation:drop 1.1s cubic-bezier(.3,1.6,.5,1) .3s both,wave 3s ease-in-out 1.85s infinite}
+.logo svg{display:block;height:.74em;width:auto;margin:0 .02em .06em}
+.hero h1{position:relative;z-index:1;font:400 clamp(30px,7vw,56px) Lalezar;margin:18px 0 8px;animation:rise .8s ease 1s both}
+.hero p{position:relative;z-index:1;max-width:34ch;opacity:.9;animation:rise .8s ease 1.15s both}
+.cta{position:relative;z-index:1;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:26px;animation:rise .8s ease 1.3s both}
+.open{position:absolute;bottom:0;left:0;right:0;background:var(--yel);color:var(--ink);overflow:hidden;white-space:nowrap;font:400 24px Lalezar;padding:8px 0;direction:ltr}
+.open div{display:inline-block;animation:mq 22s linear infinite}
+
+/* 4. TABS */
+.tabs{position:sticky;top:0;z-index:5;background:var(--bg);display:flex;gap:8px;overflow-x:auto;padding:calc(12px + env(safe-area-inset-top,0px)) 16px 12px;border-bottom:2px solid var(--red);scrollbar-width:none}
+.tab{flex:none;font:700 16px Cairo;border:2px solid var(--red);background:transparent;color:var(--red);border-radius:99px;padding:7px 18px;cursor:pointer}
+.tab[aria-selected=true]{background:var(--red);color:#fff}
+
+/* 5. MENU */
+main{max-width:860px;margin:auto;padding:36px 20px 20px}
+.sec{display:none}.sec.on{display:block}
+.sec h2{font:400 clamp(44px,10vw,76px)/1 Lalezar;color:var(--red);direction:ltr;text-align:right}
+.note{display:inline-block;background:var(--yel);color:var(--ink);font-weight:900;border-radius:99px;padding:3px 14px;margin:8px 0 6px;font-size:15px}
+.row{display:flex;align-items:center;gap:10px;padding:13px 0;opacity:0;transform:translateX(24px);animation:in .5s ease forwards}
+.row b{flex:0 1 auto;min-width:0;font-size:19px;font-weight:700;line-height:1.35}
+.row u{flex:1;min-width:10px;border-bottom:2px dotted var(--line);text-decoration:none;transform:translateY(-4px)}
+.pr{flex:none;display:flex;align-items:center;gap:12px}
+.p{font:400 22px Lalezar;color:var(--red);direction:ltr;white-space:nowrap}
+.pz .row{flex-wrap:wrap;row-gap:4px}.pz .row .nmw{flex:1 1 100%}.pz .row u{display:none}
+.pz .pr{flex:1 1 100%;flex-direction:column;align-items:stretch;gap:8px}
+.opt{display:flex;align-items:center;gap:10px}.opt small{width:46px;font:700 14px Cairo;opacity:.75}.opt .p{flex:1}
+
+/* 6. STEPPER (fixed 102px slot so nothing shifts) */
+.qty{flex:none;display:inline-grid;grid-template-columns:36px 30px 36px;align-items:center;justify-items:center;width:102px}
+.qty button{width:36px;height:36px;padding:0;border:0;border-radius:50%;background:var(--red);color:#fff;font:700 22px/1 Cairo;cursor:pointer;touch-action:manipulation}
+.qty .mn{background:transparent;color:var(--red);box-shadow:inset 0 0 0 2px var(--red)}
+.qty .off{opacity:.3;pointer-events:none}
+.qty em{font:normal 900 18px Cairo}.qty em.z{opacity:.4}
+
+/* 7. VISIT + FOOTER */
+.visit{background:var(--ink);color:var(--cream);margin-top:50px;padding:50px 20px 60px;text-align:center}
+.crown{display:block;width:clamp(80px,20vw,120px);height:auto;margin:0 auto 4px;opacity:0;transform:translateY(-60px) rotate(-20deg);filter:drop-shadow(0 6px 18px rgba(251,176,0,.5))}
+.visit.in .crown{animation:cdrop .9s cubic-bezier(.3,1.6,.5,1) forwards,cfloat 3s ease-in-out 1s infinite}
+.tw{transform-box:fill-box;transform-origin:center;animation:tw 1.6s ease-in-out infinite}
+.visit h3{font:400 clamp(52px,14vw,110px)/1.1 Lalezar;color:var(--yel)}
+.visit h3 span{display:inline-block;opacity:0;transform:translateY(60px) scale(.7);background:linear-gradient(100deg,#FBB000 38%,#fff6d6 50%,#FBB000 62%) 0 0/250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+.visit.in h3 span{animation:pop .8s cubic-bezier(.3,1.6,.5,1) forwards,wave 3s ease-in-out 1.2s infinite,shine 3s linear 1.4s infinite}
+.visit.in h3 span:nth-child(2){animation-delay:.25s,1.45s,1.65s}
+.visit p{margin:10px 0}.ph{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:22px 0}
+footer{background:var(--red);color:var(--cream);text-align:center;padding:16px;font-size:14px}
+
+/* 8. CART BUTTON — all sizes fixed; vertical centring via strut */
+.cartbtn{position:fixed;left:0;right:0;bottom:calc(16px + env(safe-area-inset-bottom,0px));margin:0 auto;z-index:20;display:none;width:max-content;height:60px;padding:0 8px 0 16px;white-space:nowrap;text-align:right;border:0;border-radius:99px;background:var(--yel);color:var(--ink);font-family:Cairo,Tahoma,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.4),0 0 0 3px var(--red);cursor:pointer}
+.cartbtn.show{display:block}
+.cartbtn::before{content:"";display:inline-block;height:100%;vertical-align:middle}
+.cic{position:relative;display:inline-block;vertical-align:middle;width:46px;height:46px;border-radius:50%;background:#B30000;color:#FDF0E6;margin-left:10px}
+.cic svg{position:absolute;inset:0;margin:auto;width:25px;height:25px}
+.cic b{position:absolute;top:-7px;right:-9px;min-width:22px;height:22px;padding:0 5px;border-radius:99px;background:#FDF0E6;color:#B30000;font:900 13px/22px Cairo;text-align:center;box-shadow:0 0 0 2px var(--yel)}
+.ctx{display:inline-block;vertical-align:middle;text-align:right;line-height:1.15}
+.ctx small{display:block;font:700 12px Cairo;opacity:.75}.ctx strong{display:block;font:400 22px Lalezar}
+.car{display:inline-block;vertical-align:middle;margin:0 12px 0 4px;font:900 26px/1 Cairo}
+
+/* 9. CART PAGE — normal page flow (no fixed/vh layout), compact, fixed palette */
+.cartpage{display:none;direction:rtl;background:#EEF0F5;color:#1d1420;color-scheme:light;font-family:Cairo,Tahoma,sans-serif}
+body.cartmode{background:#EEF0F5}
+body.cartmode>header,body.cartmode>nav,body.cartmode>main,body.cartmode>section,body.cartmode>footer,body.cartmode>.cartbtn{display:none!important}
+body.cartmode>.cartpage{display:block}
+.cartpage,.cartpage *{animation:none!important;transition:none!important}
+.cp{width:100%;max-width:440px;margin:0 auto;padding:calc(10px + env(safe-area-inset-top,0px)) 12px 0}
+.hd{margin:0 0 10px;border-radius:18px;background:linear-gradient(135deg,#E0262E,#B30000);color:#fff;box-shadow:0 6px 16px rgba(179,0,0,.25)}
+.hd table{width:100%;border-collapse:collapse}.hd td{padding:8px 14px;vertical-align:middle}.hd .xc{width:1%;text-align:left}
+.hd h4{display:inline-block;vertical-align:middle;font:400 26px/1.2 Lalezar;color:#fff}
+.cnt{display:inline-block;vertical-align:middle;min-width:24px;margin-right:8px;padding:0 7px;border-radius:99px;background:#FBB000;color:#2A0A0A;font:900 14px/24px Cairo;text-align:center}
+.hd button{width:34px;height:34px;border:0;border-radius:50%;background:#fff;color:#1d1420;font-size:16px;cursor:pointer}
+.li{margin-bottom:8px;padding:10px 12px;border-radius:16px;background:#fff;box-shadow:0 4px 12px rgba(20,10,30,.07)}
+.li table{width:100%;border-collapse:collapse}.li td{padding:0;vertical-align:middle}
+.nm{font-size:16px;font-weight:900;line-height:1.35}
+.sz{display:inline-block;margin-right:8px;padding:1px 10px;border-radius:99px;background:#FBB000;color:#2A0A0A;font:700 12px Cairo;font-style:normal;vertical-align:middle}
+.dl{width:1%;text-align:left;vertical-align:top}
+.del{width:26px;height:26px;padding:0;border:0;border-radius:50%;background:#F1F2F6;color:#8a8f9c;font-size:12px;cursor:pointer}
+.pc{margin:1px 0 8px;font-size:14px;font-weight:700;color:#B30000}
+.l2 .c2{font-size:12px;color:#666}.l2 .c2 small{display:block}.l2 .c2 b{font:400 19px Lalezar;color:#1d1420;direction:ltr}
+.l2 .c1{width:1%;text-align:left}
+.cartpage .qty{width:104px;grid-template-columns:32px 1fr 32px}
+.cartpage .qty button{width:32px;height:32px;font-size:20px;background:#D41F26;color:#fff}
+.cartpage .qty .mn{background:#fff;color:#9aa0ab;box-shadow:inset 0 0 0 2px #C9CDD6}
+.cartpage .qty em{color:#1d1420;font-size:18px}
+.empty{padding:26px 6px;text-align:center;color:#6b6f7b}
+.info{margin-top:4px;padding:12px;border-radius:16px;background:#fff;box-shadow:0 4px 12px rgba(20,10,30,.07)}
+.info h5{margin-bottom:8px;font:900 15px Cairo}
+.info input,.info textarea{display:block;width:100%;margin-bottom:8px;padding:9px 10px;border:1.5px solid #D8DBE3;border-radius:10px;background:#F7F8FB;color:#1d1420;font:500 16px Cairo;resize:none}
+.info input:focus,.info textarea:focus{outline:none;border-color:#B30000}
+.lnk{display:block;margin:2px auto 0;border:0;background:none;color:#6b6f7b;text-decoration:underline;font:500 14px Cairo;cursor:pointer}
+.bar{position:sticky;bottom:0;margin:12px -12px 0;padding:10px 12px calc(12px + env(safe-area-inset-bottom,0px));background:#fff;box-shadow:0 -6px 16px rgba(20,10,30,.1)}
+.tt{width:100%;border-collapse:collapse;margin-bottom:8px}.tt td{padding:0;font:900 16px Cairo}.tt td:last-child{text-align:left}
+.tt small{display:block;font:500 12px Cairo;color:#777}.tt b{font:400 24px Lalezar;color:#1d1420;direction:ltr}
+#send{display:block;padding:12px;border-radius:99px;background:linear-gradient(100deg,#D4151E 0%,#EE5A1B 60%,#FBB000 100%);color:#fff;font:900 17px Cairo;text-align:center;box-shadow:0 8px 18px rgba(212,31,38,.3)}
+#send:hover{transform:none}
+#send svg{width:24px;height:24px;margin-left:8px;vertical-align:middle;fill:#fff}
+
+/* 9b. DATABASE EXTRAS: images, badges, discounts, availability, offers, toast */
+.nmw{flex:0 1 auto;min-width:0}
+.th{flex:none;width:56px;height:56px;border-radius:12px;object-fit:cover;background:rgba(0,0,0,.06)}
+.dsc{display:block;margin-top:2px;font-size:13px;font-weight:500;line-height:1.4;opacity:.7}
+.bg{display:inline-block;margin-right:6px;padding:0 8px;border-radius:99px;background:var(--yel);color:var(--ink);font:900 11px/18px Cairo;font-style:normal;vertical-align:middle}
+.bg.nw{background:var(--red);color:#fff}
+.op{margin-left:6px;font:500 13px Cairo;opacity:.55;text-decoration:line-through}
+.na{flex:none;width:102px;text-align:center;font:700 13px Cairo;color:var(--red)}
+.row.un .nmw,.row.un .p{opacity:.5}
+.emptym{padding:40px 10px;text-align:center;opacity:.7}
+.ads{max-width:860px;margin:0 auto;padding:24px 0 0}
+.adrow{display:flex;gap:12px;overflow-x:auto;padding:0 20px 6px;scroll-snap-type:x proximity;scrollbar-width:none}
+.ad{flex:none;width:min(280px,78vw);scroll-snap-align:start;overflow:hidden;border-radius:18px;background:var(--ink);color:var(--cream);box-shadow:0 8px 22px rgba(0,0,0,.2)}
+.ad img{display:block;width:100%;height:130px;object-fit:cover}
+.adb{padding:12px 14px 14px}.adb h3{font:400 24px/1.2 Lalezar;margin:6px 0 2px}.adb p{font-size:14px;opacity:.85}
+.adk{display:inline-block;padding:0 10px;border-radius:99px;background:var(--red);color:#fff;font:900 11px/20px Cairo}
+.add{display:inline-block;margin-right:6px;padding:0 10px;border-radius:99px;background:var(--yel);color:var(--ink);font:900 12px/20px Cairo}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:60;max-width:88vw;padding:12px 20px;border-radius:99px;background:var(--ink);color:var(--cream);font-weight:700;opacity:0;pointer-events:none}
+.toast.show{opacity:1}
+
+.srch{max-width:860px;margin:0 auto;padding:18px 20px 0}
+.srch input{display:block;width:100%;padding:12px 16px;border:2px solid var(--red);border-radius:99px;background:var(--bg);color:var(--fg);font:500 16px Cairo}
+.srch input:focus{outline:none;box-shadow:0 0 0 3px var(--yel)}
+body.cartmode>.srch{display:none!important}
+
+/* 10. KEYFRAMES + A11Y */
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes drop{from{transform:translateY(-120vh) rotate(-25deg)}to{transform:none}}
+@keyframes rise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+@keyframes wave{0%,100%{transform:translateY(0)}50%{transform:translateY(-.05em)}}
+@keyframes mq{to{transform:translateX(-50%)}}
+@keyframes in{to{opacity:1;transform:none}}
+@keyframes pop{to{opacity:1;transform:none}}
+@keyframes shine{to{background-position:-150% 0}}
+@keyframes cdrop{to{opacity:1;transform:none}}
+@keyframes cfloat{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-10px) rotate(5deg)}}
+@keyframes tw{0%,100%{opacity:.2;transform:scale(.5)}50%{opacity:1;transform:scale(1.3)}}
+.btn:focus-visible,.tab:focus-visible,.qty button:focus-visible{outline:3px solid var(--yel);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-delay:0s!important;animation-iteration-count:1!important}}
